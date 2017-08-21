@@ -1,4 +1,4 @@
-new_feature_type3 <- function(data_trainm,data_testm,classes){
+new_feature_type3 <- function(data_trainm,data_testm,classes,nc){
 
   train_nets <- structure(list(types = character(),
                                featureIDX = list(),
