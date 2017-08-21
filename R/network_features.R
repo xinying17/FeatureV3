@@ -12,7 +12,7 @@ network_features <- function(L='label',data_train,data_test,nf,p,corr,f_type,s,n
   test_label <- data_test$label
 
   # feature selection
-  if(nf>0) {
+  if(nf < ncol(data_trainm)) {
     nf = round(min(ncol(data_train),nf))
 
     # rank feature by ttest
@@ -24,19 +24,19 @@ network_features <- function(L='label',data_train,data_test,nf,p,corr,f_type,s,n
   }
 
   if(f_type==1){
-    new_data <- new_feature_type1(data_trainm,data_testm,classes)
+    new_data <- new_feature_type1(data_trainm,train_label,data_testm,classes,p,corr,s)
   }
 
   if(f_type==2){
-    new_data <- new_feature_type2(data_trainm,data_testm,classes)
+    new_data <- new_feature_type2(data_trainm,train_label,data_testm,classes,p,corr,s)
   }
 
   if(f_type==3){
-    new_data <- new_feature_type3(data_trainm,data_testm,classes,nc)
+    new_data <- new_feature_type3(data_trainm,train_label,data_testm,classes,p,corr,s,nc)
   }
 
   if(f_type==4){
-    new_data <- new_feature_type3(data_trainm,data_testm,classes,nc)
+    new_data <- new_feature_type3(data_trainm,train_label,data_testm,classes,p,corr,s,nc)
   }
 
   # remove na and inf

@@ -1,4 +1,4 @@
-new_feature_type1 <- function(data_trainm,data_testm,classes){
+new_feature_type1 <- function(data_trainm,train_label,data_testm,classes,p,corr,s){
 
   train_nets <- structure(list(types = character(),
                                featureIDX = list(),
@@ -8,7 +8,7 @@ new_feature_type1 <- function(data_trainm,data_testm,classes){
     class_train_data <- data_trainm[train_label==t,]
     nets <- network_build(class_train_data, p, corr)
     train_nets$types[[aa]] <- t
-    train_nets$featureIDX[[aa]] <- colnames(data_train)
+    train_nets$featureIDX[[aa]] <- colnames(data_trainm)
     train_nets$nets[[aa]] <- nets
     aa=aa+1
   }

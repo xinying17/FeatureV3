@@ -1,4 +1,4 @@
-new_feature_type3 <- function(data_trainm,data_testm,classes,nc){
+new_feature_type3 <- function(data_trainm,train_label,data_testm,classes,p,corr,s,nc){
 
   train_nets <- structure(list(types = character(),
                                featureIDX = list(),
@@ -22,8 +22,8 @@ new_feature_type3 <- function(data_trainm,data_testm,classes,nc){
     }
 
   }
-  new_train <- matrix(nrow = nrow(data_train),ncol = length(train_nets$types))
-  new_test <- matrix(nrow = nrow(data_test),ncol = length(train_nets$types))
+  new_train <- matrix(nrow = nrow(data_trainm),ncol = length(train_nets$types))
+  new_test <- matrix(nrow = nrow(data_testm),ncol = length(train_nets$types))
 
   # new train data
   for(b in 1:length(train_nets$types)){
