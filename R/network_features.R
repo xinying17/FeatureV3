@@ -36,7 +36,7 @@ network_features <- function(L='label',data_train,data_test,nf,p,corr,f_type,s,n
   }
 
   if(f_type==4){
-    new_data <- new_feature_type3(data_trainm,train_label,data_testm,classes,p,corr,s,nc)
+    new_data <- new_feature_type4(data_trainm,train_label,data_testm,classes,p,corr,s,nc)
   }
 
   # remove na and inf
@@ -45,11 +45,11 @@ network_features <- function(L='label',data_train,data_test,nf,p,corr,f_type,s,n
   is.na(new_data) <- sapply(new_data, is.infinite)
   is.na(new_data) <- sapply(new_data, is.nan)
   ind_na <- colSums(is.na(new_data))==0
+  new_data <- new_data[,ind_na]
 
   xx = seq(from=1,to=nrow(data_train),by=1)
   new_train <- new_data[xx,]
   new_test <- new_data[-xx,]
-
 
   return(list(new_train = new_train, new_test = new_test, train_label = train_label, test_label = test_label))
 
