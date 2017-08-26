@@ -5,13 +5,15 @@ smoothness <- function(Lap,f,s){
   f <- as.matrix(f)
   require('expm', quietly = TRUE)
   require('matrixcalc',quietly = TRUE)
-  # if(is.positive.definite(Lap,tol=0)){
-  #lap_fun <- function(x) {x %*% expm(s*logm(as.matrix(Lap))) %*% x}
+
   r <- eigen(Lap)
   V <- r$vectors
   lam <- r$values
   lam[lam<0] = 0
-  Lmbd = diag(lam ** s)
+  Lmbd = diag(lam ** abs(s))
+  if(s<0){
+    Lmbd = ginv(Lmbd)
+  }
   newL = V %*% Lmbd %*% solve(V)
   lap_fun <- function(x) {x %*% newL %*% x}
 
