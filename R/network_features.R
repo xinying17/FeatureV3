@@ -39,6 +39,9 @@ network_features <- function(L='label',data_train,data_test,nf,p,corr,f_type,s,n
     new_data <- new_feature_type4(data_trainm,train_label,data_testm,classes,p,corr,s,nc)
   }
 
+  if(f_type==5){
+    new_data <- new_feature_type5(data_trainm,train_label,data_testm,classes,p,corr,s)
+  }
   # remove na and inf
   new_data <- data.frame(scale(new_data))
 
